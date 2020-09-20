@@ -38,23 +38,50 @@ for (var i = 0; i < dynamicScripts.length; i++) {
     
           <input type="password" class="form-control mt-3 mb-3" placeholder="Password" name="psw" id="password">
           <div style='text-align: center;'> 
-          <button type="submit"  class='mr-2 btn btn-primary' onClick="login()">Login</button>
-          <button type="button" class='ml-2 btn btn-light'>Forgot password</button>
+          <button type="submit"  class='mr-2' id='login-account' onClick="login()" style='padding-left: 40px;padding-right: 40px;'>Login</button>
+          <button type="button" class='ml-2' id='forgot-account' onClick="forgetPassword()">Forgot password</button>
           </div> 
           <hr style='margin: 10px;'>
           <span style='text-align: center;display: grid;'>Don't have an anccount?</span >
-          <button type="button" class="btn btn-success col-lg-12" onClick="register()">Create an account</button>
+          <button type="button" class="col-lg-12" id='create-account' onClick="register()">Create an account</button>
         </div>
       </div>
     </div>
   </div>`
     login_modal.appendChild(modal_div);
+
+    let forget_modal = document.getElementById('forget-modal');
+    var modal_div = document.createElement('div');
+    modal_div.innerHTML = `<div id="forget" class="modal fade">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sign In</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        <div id="forget-msg"></div>    
+          <input type="email" class="form-control" placeholder="Email Address"  id="emailId" name="uname">
+          <hr style='margin: 10px;'>
+          <span style='text-align: center;display: grid;'>Don't have an anccount?</span >
+          <button type="button" class="col-lg-12" id='forget-account' onClick="sendMail()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>`
+  forget_modal.appendChild(modal_div);
   });
 
   $('#check-login').click(function () {
       if (localStorage.getItem('participant')) {
         return;
       } else {
+        let btn1 = document.getElementById('create-account');
+        btn1.className += 'btn btn-success btn-sm btn-block';
+        let btn2 = document.getElementById('login-account');
+        btn2.className += 'btn btn-primary btn-sm';
+        let btn3 = document.getElementById('forgot-account');
+        btn3.className += 'btn btn-secondary btn-sm';
         jQuery("#login").modal('show');
       }
   })
@@ -88,3 +115,27 @@ function register(){
   jQuery("#participant-reg").modal('show');
 }
 
+
+function forgetPassword(){
+  let btn3 = document.getElementById('forget-account');
+  btn3.className += 'btn btn-primary btn-sm btn-block';
+  jQuery("#login").modal('hide');
+  jQuery("#forget").modal('show');
+}
+
+function sendMail(){
+  let element = document.getElementById('forget-msg');
+  let email = document.getElementById('emailId').value;
+  firebase.auth().sendPasswordResetEmail(email)
+  .then((res) => {
+    console.log(res);
+    element.innerHTML = 'Reset password mail has been sent to your email.'
+    element.className += 'alert alert-success';
+    setTimeout(() => {
+      jQuery("#forget").modal('hide');
+    }, 3000)
+  })
+  .catch(e => {
+    console.log(e);
+  })
+}
