@@ -1,23 +1,4 @@
 
-
-// load scripts
-
-var dynamicScripts = [
-  "https://unpkg.com/formiojs@latest/dist/formio.full.min.js",
-  "https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js",
-  "https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js",
-  "https://www.gstatic.com/firebasejs/7.20.0/firebase-firestore.js"
-];
-
-for (var i = 0; i < dynamicScripts.length; i++) {
-  let node1 = document.createElement('script');
-  node1.src = dynamicScripts[i];
-  node1.type = 'text/javascript';
-  node1.async = false;
-  node1.charset = 'utf-8';
-  document.getElementsByTagName('head')[0].appendChild(node1);
-}
-
 (function ($) {
   "use strict"
 
@@ -33,10 +14,10 @@ for (var i = 0; i < dynamicScripts.length; i++) {
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-        <div id="login-msg"></div>    
-          <input type="email" class="form-control" placeholder="Email Address"  id="email" name="uname">
+        <div id="login-msgs"></div>    
+          <input type="email" class="form-control" placeholder="Email Address"  id="user-email" name="uname">
     
-          <input type="password" class="form-control mt-3 mb-3" placeholder="Password" name="psw" id="password">
+          <input type="password" class="form-control mt-3 mb-3" placeholder="Password" name="psw" id="user-password">
           <div style='text-align: center;'> 
           <button type="submit"  class='mr-2' id='login-account' onClick="login()" style='padding-left: 40px;padding-right: 40px;'>Login</button>
           <button type="button" class='ml-2' id='forgot-account' onClick="forgetPassword()">Forgot password</button>
@@ -90,9 +71,9 @@ for (var i = 0; i < dynamicScripts.length; i++) {
 
 //login 
 function login() {
-  let element = document.getElementById('login-msg');
-  let email = document.getElementById('email').value;
-  let password = document.getElementById('password').value;
+  let element = document.getElementById('login-msgs');
+  let email = document.getElementById('user-email').value;
+  let password = document.getElementById('user-password').value;
 
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((res) => {
