@@ -4,6 +4,12 @@
 
   /* 1. Proloder */
   $(window).on('load', function () {
+  if (localStorage.getItem('participant')) {
+    document.getElementById('virtual').style.display = 'block';
+    return;
+  } else {
+    document.getElementById('virtual').style.display = 'none';
+  } 
     let login_modal = document.getElementById('login-modal');
     var modal_div = document.createElement('div');
     modal_div.innerHTML = `<div id="login" class="modal fade">
@@ -16,7 +22,6 @@
         <div class="modal-body">
         <div id="login-msgs"></div>    
           <input type="email" class="form-control" placeholder="Email Address"  id="user-email" name="uname">
-    
           <input type="password" class="form-control mt-3 mb-3" placeholder="Password" name="psw" id="user-password">
           <div style='text-align: center;'> 
           <button type="submit"  class='mr-2' id='login-account' onClick="login()" style='padding-left: 40px;padding-right: 40px;'>Login</button>
@@ -57,13 +62,13 @@
       if (localStorage.getItem('participant')) {
         return;
       } else {
+        jQuery("#login").modal({backdrop: 'static', keyboard: false}).show();
         let btn1 = document.getElementById('create-account');
         btn1.className += 'btn btn-success btn-sm btn-block';
         let btn2 = document.getElementById('login-account');
         btn2.className += 'btn btn-primary btn-sm';
         let btn3 = document.getElementById('forgot-account');
         btn3.className += 'btn btn-secondary btn-sm';
-        jQuery("#login").modal('show');
       }
   })
 })(jQuery);
@@ -82,8 +87,9 @@ function login() {
       element.className += 'alert alert-success';
       setTimeout(() => {
         jQuery("#login").modal('hide');
-        window.location.href = "about.html";
-      }, 3000)
+        document.getElementById('virtual').style.display = 'block';
+        // window.location.href = "about.html";
+      }, 2000)
     })
     .catch(e => {
       element.innerHTML = e.message;
@@ -101,7 +107,7 @@ function forgetPassword(){
   let btn3 = document.getElementById('forget-account');
   btn3.className += 'btn btn-primary btn-sm btn-block';
   jQuery("#login").modal('hide');
-  jQuery("#forget").modal('show');
+  jQuery("#forget").modal({backdrop: 'static', keyboard: false}).show();
 }
 
 function sendMail(){
