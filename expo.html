@@ -110,13 +110,13 @@
         window.addEventListener("message", function (event) {
           if (event.data != 'tourLoaded') {
             if (localStorage.getItem('participant')) {
-              if(event.data != ''){
+              if (event.data != '') {
                 var userId = JSON.parse(localStorage.getItem('participant'))
                 var date = new Date();
                 setTimeout(() => {
-                firebase.firestore().collection('Analytics').doc().set({ date:date,event: event.data,participantId:userId.user.uid});
-                analytics = firebase.analytics();
-                analytics.logEvent('login', { date: date, event: event.data, participantId: userId.user.uid });
+                  firebase.firestore().collection('Analytics').doc().set({ date: date, event: event.data, participantId: userId.user.uid });
+                  analytics = firebase.analytics();
+                  analytics.logEvent('login', { date: date, event: event.data, participantId: userId.user.uid });
                 }, 1000)
                 // firebase.firestore().collection('Analytics').doc().set({ date:date,event: event.data,participantId:userId.user.uid});
                 // analytics = firebase.analytics();
@@ -126,26 +126,6 @@
                 }
               }
             }
-          }
-
-          function openProductModal() {
-            let product_modal = document.getElementById('event-modal');
-            var modal_div = document.createElement('div');
-            modal_div.innerHTML = `<div id="ProductInfoVideo" class="modal fade">
-                <div class="modal-dialog modal-md">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Product Info Video</h5>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                    <div id="forget-msg"></div>    
-                    </div>
-                  </div>
-                </div>
-              </div>`
-            product_modal.appendChild(modal_div);
-            jQuery("#ProductInfoVideo").modal({ backdrop: 'static', keyboard: false }).show();
           }
         });
       </script>
@@ -337,6 +317,7 @@
   <!-- Jquery Plugins, main Jquery -->
   <script src="./assets/js/plugins.js"></script>
   <script src="./assets/js/main.js"></script>
+  <script src="./product-info.js"></script>
 
   <!--Formio-->
   <link rel="stylesheet" href="https://unpkg.com/formiojs@latest/dist/formio.full.min.css">
