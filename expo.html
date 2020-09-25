@@ -118,9 +118,6 @@
                   analytics = firebase.analytics();
                   analytics.logEvent('login', { date: date, event: event.data, participantId: userId.user.uid });
                 }, 1000)
-                // firebase.firestore().collection('Analytics').doc().set({ date:date,event: event.data,participantId:userId.user.uid});
-                // analytics = firebase.analytics();
-                // analytics.logEvent('login', { date: date, event: event.data, participantId: userId.user.uid });
                 if (event.data == 'Designmation_ProductInfoVideo') {
                   openProductModal()
                 }
