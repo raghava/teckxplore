@@ -66,6 +66,7 @@ async function openProductModal() {
     document.getElementById('company-address').innerHTML = `${vendorDetails.addressLine1}, ${vendorDetails.city},${vendorDetails.state} ${vendorDetails.country}`;
     document.getElementById('contact-info').innerHTML = `${vendorDetails.primaryContactFirstName}, ${vendorDetails.primaryContactLastName}<br>${vendorDetails.primaryContactEmail}, ${vendorDetails.primaryContactPhoneNumber}`;
 
+    document.getElementById('product_list').innerHTML = '';
     if (vendorDetails.productDetails && vendorDetails.productDetails.length) {
       product_collection = vendorDetails.productDetails;
       showSelectedProduct(0);
