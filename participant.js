@@ -41,7 +41,7 @@ for (var i = 0; i < dynamicScripts.length; i++) {
     firebase.analytics.isSupported().then((isSupported) => {
       if (isSupported) {
       }
-  })
+    })
     let participant_modal = document.getElementById('participant-modal');
     let participant_login = document.getElementById('participant-login-screen')
 
@@ -76,7 +76,7 @@ for (var i = 0; i < dynamicScripts.length; i++) {
           <div id="login-msg"></div>
           <input type="email" class="form-control" placeholder="Email" id="email">
           <input type="password" class="form-control mt-3" placeholder="password" id="password">
-          <button class="btn btn-primary mt-3" onClick="login()">
+          <button class="btn btn-primary mt-3" onClick="submit()">
             Login
           </button>
         </div>
@@ -103,6 +103,7 @@ for (var i = 0; i < dynamicScripts.length; i++) {
             firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
               .then(function (user) {
                 if (((user || {}).user || {}).uid) {
+                  delete data.password;
                   firebase.firestore().collection('participants').doc(user.user.uid).set({ ...data });
                   let login_msg = document.getElementById('login-msg');
                   if (login_msg) {
@@ -146,7 +147,7 @@ for (var i = 0; i < dynamicScripts.length; i++) {
 
 
 //login 
-function login() {
+function submit() {
   let element = document.getElementById('login-msg');
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
@@ -156,6 +157,10 @@ function login() {
       localStorage.setItem("participant", JSON.stringify(res));
       element.innerHTML = 'Logged in successfully';
       element.className += 'alert alert-success';
+      let iframe = document.getElementById('virtual');
+      if (iframe) {
+        iframe.style.display = 'block';
+      }
       setTimeout(() => {
         jQuery("#participant-login").modal('hide');
       }, 3000)
