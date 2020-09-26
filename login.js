@@ -19,7 +19,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Sign In</h5>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
         <div id="login-msgs"></div>    
@@ -57,7 +56,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Sign In</h5>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
         <div id="forget-msg"></div>    
