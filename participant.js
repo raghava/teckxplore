@@ -41,7 +41,7 @@ for (var i = 0; i < dynamicScripts.length; i++) {
     firebase.analytics.isSupported().then((isSupported) => {
       if (isSupported) {
       }
-  })
+    })
     let participant_modal = document.getElementById('participant-modal');
     let participant_login = document.getElementById('participant-login-screen')
 
@@ -96,7 +96,7 @@ for (var i = 0; i < dynamicScripts.length; i++) {
         hooks: {
           beforeSubmit: function (submission, next) {
             let data = submission.data;
-            ['submit', 'confirmEmail', 'confirmPassword'].forEach(key => {
+            ['submit', 'confirmEmail', 'confirmPassword', 'password'].forEach(key => {
               delete data[key];
             })
             let element = document.getElementById('participant-msg');
