@@ -157,6 +157,10 @@ function submit() {
       localStorage.setItem("participant", JSON.stringify(res));
       element.innerHTML = 'Logged in successfully';
       element.className += 'alert alert-success';
+      let iframe = document.getElementById('virtual');
+      if (iframe) {
+        iframe.style.display = 'block';
+      }
       setTimeout(() => {
         jQuery("#participant-login").modal('hide');
       }, 3000)
