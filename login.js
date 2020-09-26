@@ -6,9 +6,11 @@
   $(window).on('load', function () {
   if (localStorage.getItem('participant')) {
     document.getElementById('virtual').style.display = 'block';
+    document.getElementById('empty-div').style.display = 'none'
     return;
   } else {
     document.getElementById('virtual').style.display = 'none';
+    document.getElementById('empty-div').style.display = 'block'
   } 
     let login_modal = document.getElementById('login-modal');
     var modal_div = document.createElement('div');
@@ -36,6 +38,18 @@
   </div>`
     login_modal.appendChild(modal_div);
 
+    if (localStorage.getItem('participant')) {
+      return;
+    } else {
+      jQuery("#login").modal({backdrop: 'static', keyboard: false}).show();
+      let btn1 = document.getElementById('create-account');
+      btn1.className += 'btn btn-success btn-sm btn-block';
+      let btn2 = document.getElementById('login-account');
+      btn2.className += 'btn btn-primary btn-sm';
+      let btn3 = document.getElementById('forgot-account');
+      btn3.className += 'btn btn-secondary btn-sm';
+    }
+
     let forget_modal = document.getElementById('forget-modal');
     var modal_div = document.createElement('div');
     modal_div.innerHTML = `<div id="forget" class="modal fade">
@@ -58,19 +72,6 @@
   forget_modal.appendChild(modal_div);
   });
 
-  $('#check-login').click(function () {
-      if (localStorage.getItem('participant')) {
-        return;
-      } else {
-        jQuery("#login").modal({backdrop: 'static', keyboard: false}).show();
-        let btn1 = document.getElementById('create-account');
-        btn1.className += 'btn btn-success btn-sm btn-block';
-        let btn2 = document.getElementById('login-account');
-        btn2.className += 'btn btn-primary btn-sm';
-        let btn3 = document.getElementById('forgot-account');
-        btn3.className += 'btn btn-secondary btn-sm';
-      }
-  })
 })(jQuery);
 
 
@@ -88,7 +89,7 @@ function login() {
       setTimeout(() => {
         jQuery("#login").modal('hide');
         document.getElementById('virtual').style.display = 'block';
-        // window.location.href = "about.html";
+        document.getElementById('empty-div').style.display = 'none'
       }, 2000)
     })
     .catch(e => {
