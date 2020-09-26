@@ -110,7 +110,6 @@ function showSelectedProduct(key) {
     db.collection('vendors').doc('ApWgwKGu9EaXRaK3UfVDpK4cT263').onSnapshot(function (doc) {
       vendorDetails = doc.data();
       initiateModal = true;
-      console.log(vendorDetails);
     });
   })
 })(jQuery);

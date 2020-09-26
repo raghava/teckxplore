@@ -4,12 +4,12 @@
 
   /* 1. Proloder */
   $(window).on('load', function () {
-  if (localStorage.getItem('participant')) {
-    document.getElementById('virtual').style.display = 'block';
-    return;
-  } else {
-    document.getElementById('virtual').style.display = 'none';
-  } 
+    if (localStorage.getItem('participant')) {
+      document.getElementById('virtual').style.display = 'block';
+      return;
+    } else {
+      document.getElementById('virtual').style.display = 'none';
+    }
     let login_modal = document.getElementById('login-modal');
     var modal_div = document.createElement('div');
     modal_div.innerHTML = `<div id="login" class="modal fade">
@@ -55,21 +55,21 @@
       </div>
     </div>
   </div>`
-  forget_modal.appendChild(modal_div);
+    forget_modal.appendChild(modal_div);
   });
 
   $('#check-login').click(function () {
-      if (localStorage.getItem('participant')) {
-        return;
-      } else {
-        jQuery("#login").modal({backdrop: 'static', keyboard: false}).show();
-        let btn1 = document.getElementById('create-account');
-        btn1.className += 'btn btn-success btn-sm btn-block';
-        let btn2 = document.getElementById('login-account');
-        btn2.className += 'btn btn-primary btn-sm';
-        let btn3 = document.getElementById('forgot-account');
-        btn3.className += 'btn btn-secondary btn-sm';
-      }
+    if (localStorage.getItem('participant')) {
+      return;
+    } else {
+      jQuery("#login").modal({ backdrop: 'static', keyboard: false }).show();
+      let btn1 = document.getElementById('create-account');
+      btn1.className += 'btn btn-success btn-sm btn-block';
+      let btn2 = document.getElementById('login-account');
+      btn2.className += 'btn btn-primary btn-sm';
+      let btn3 = document.getElementById('forgot-account');
+      btn3.className += 'btn btn-secondary btn-sm';
+    }
   })
 })(jQuery);
 
@@ -97,32 +97,32 @@ function login() {
     })
 }
 
-function register(){
+function register() {
   jQuery("#login").modal('hide');
   jQuery("#participant-reg").modal('show');
 }
 
 
-function forgetPassword(){
+function forgetPassword() {
   let btn3 = document.getElementById('forget-account');
   btn3.className += 'btn btn-primary btn-sm btn-block';
   jQuery("#login").modal('hide');
-  jQuery("#forget").modal({backdrop: 'static', keyboard: false}).show();
+  jQuery("#forget").modal({ backdrop: 'static', keyboard: false }).show();
 }
 
-function sendMail(){
+function sendMail() {
   let element = document.getElementById('forget-msg');
   let email = document.getElementById('emailId').value;
   firebase.auth().sendPasswordResetEmail(email)
-  .then((res) => {
-    console.log(res);
-    element.innerHTML = 'Reset password mail has been sent to your email.'
-    element.className += 'alert alert-success';
-    setTimeout(() => {
-      jQuery("#forget").modal('hide');
-    }, 3000)
-  })
-  .catch(e => {
-    console.log(e);
-  })
+    .then((res) => {
+      console.log(res);
+      element.innerHTML = 'Reset password mail has been sent to your email.'
+      element.className += 'alert alert-success';
+      setTimeout(() => {
+        jQuery("#forget").modal('hide');
+      }, 3000)
+    })
+    .catch(e => {
+      console.log(e);
+    })
 }

@@ -76,7 +76,7 @@ for (var i = 0; i < dynamicScripts.length; i++) {
           <div id="login-msg"></div>
           <input type="email" class="form-control" placeholder="Email" id="email">
           <input type="password" class="form-control mt-3" placeholder="password" id="password">
-          <button class="btn btn-primary mt-3" onClick="login()">
+          <button class="btn btn-primary mt-3" onClick="submit()">
             Login
           </button>
         </div>
@@ -96,13 +96,14 @@ for (var i = 0; i < dynamicScripts.length; i++) {
         hooks: {
           beforeSubmit: function (submission, next) {
             let data = submission.data;
-            ['submit', 'confirmEmail', 'confirmPassword', 'password'].forEach(key => {
+            ['submit', 'confirmEmail', 'confirmPassword'].forEach(key => {
               delete data[key];
             })
             let element = document.getElementById('participant-msg');
             firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
               .then(function (user) {
                 if (((user || {}).user || {}).uid) {
+                  delete data.password;
                   firebase.firestore().collection('participants').doc(user.user.uid).set({ ...data });
                   let login_msg = document.getElementById('login-msg');
                   if (login_msg) {
@@ -146,7 +147,7 @@ for (var i = 0; i < dynamicScripts.length; i++) {
 
 
 //login 
-function login() {
+function submit() {
   let element = document.getElementById('login-msg');
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
