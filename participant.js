@@ -7,7 +7,8 @@ var dynamicScripts = [
   "https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js",
   "https://www.gstatic.com/firebasejs/7.20.0/firebase-firestore.js",
   "https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js",
-  "https://www.googletagmanager.com/gtag/js"
+  "https://www.googletagmanager.com/gtag/js",
+  "https://meet.jit.si/external_api.js"
 ];
 
 for (var i = 0; i < dynamicScripts.length; i++) {
