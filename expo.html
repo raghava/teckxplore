@@ -120,12 +120,13 @@
                   analytics.logEvent('login', { date: date, event: event.data, participantId: userId.user.uid });
                 }, 1000)
                 if (event.data == 'Designmation_ProductInfoVideo') {
-                  openProductModal()
+                  openVideoMeeting(); // openProductModal()
                 }
               }
-              if(event.data == 'ENTER_Designmation'){
+/*              if(event.data == 'ENTER_Designmation'){
                 openVideoMeeting()
               }
+*/
             }
           }
         });
