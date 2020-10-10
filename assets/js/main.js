@@ -54,11 +54,11 @@
         doAnimations($animatingElements);
       });
       BasicSlider.slick({
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 5000,
         dots: false,
         fade: true,
-        arrows: false, 
+        arrows: true, 
         prevArrow: '<button type="button" class="slick-prev"><i class="ti-angle-left"></i></button>',
         nextArrow: '<button type="button" class="slick-next"><i class="ti-angle-right"></i></button>',
         responsive: [{
@@ -217,12 +217,8 @@
     }
     var timerdate = mm + '/' + dd + '/' + yyyy;
     // For demo preview end
-    
-
-    // Use this for real timer date
-    /*  var timerdate = "2020/01/01"; */
-
-	$("#countdown").countdown(timerdate, function(event) {
+        
+	$("#countdown").countdown("11/29/2020", function(event) {
         $(this).html(event.strftime("<div class='cd-item'><span>%D</span><p>Days</p> </div>" + "<div class='cd-item'><span>%H</span><p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span><p>Min</p> </div>" + "<div class='cd-item'><span>%S</span><p>Sec</p> </div>"));
     });
 
