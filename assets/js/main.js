@@ -218,9 +218,9 @@
     var timerdate = mm + '/' + dd + '/' + yyyy;
     // For demo preview end
         
-	$("#countdown").countdown("11/29/2020", function(event) {
-        $(this).html(event.strftime("<div class='cd-item'><span>%D</span><p>Days</p> </div>" + "<div class='cd-item'><span>%H</span><p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span><p>Min</p> </div>" + "<div class='cd-item'><span>%S</span><p>Sec</p> </div>"));
-    });
+	// $("#countdown").countdown("01/15/2021", function(event) {
+  //       $(this).html(event.strftime("<div class='cd-item'><span>%D</span><p>Days</p> </div>" + "<div class='cd-item'><span>%H</span><p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span><p>Min</p> </div>" + "<div class='cd-item'><span>%S</span><p>Sec</p> </div>"));
+  //   });
 
 
 
